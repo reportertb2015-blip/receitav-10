@@ -2,7 +2,7 @@
 title: "Chá de Cúrcuma com Pimenta Preta: Anti-inflamatório Natural"
 description: "Aprenda a preparar o poderoso chá de cúrcuma com pimenta preta da série Cura Natureza para combater inflamações e fortalecer o corpo."
 pubDate: 2026-05-13
-heroImage: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=1000&q=80"
+heroImage: "/cha-de-curcuma-com-pimenta.webp"
 category: "Saúde Natural"
 tags:
   - curanatureza
