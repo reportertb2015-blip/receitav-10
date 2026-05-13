@@ -2,7 +2,7 @@
 title: "Suco Detox de Couve com Limão: Limpeza Natural"
 description: "Aprenda a fazer o suco detox de couve com limão da série Cura Natureza para desintoxicar o organismo e aumentar a energia."
 pubDate: 2026-05-13
-heroImage: "https://images.unsplash.com/photo-1610970882739-a69c1693c71a?auto=format&fit=crop&w=1000&q=80"
+heroImage: "/suco-detox-de-couve-com-limao.webp"
 category: "Saúde Natural"
 tags:
   - curanatureza
