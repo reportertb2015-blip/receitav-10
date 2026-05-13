@@ -2,7 +2,7 @@
 title: "Chá de Hortelã com Gengibre: Série Cura Natureza"
 description: "Aprenda a fazer o poderoso chá de hortelã com gengibre para digestão e imunidade com Anderson Kochanski."
 pubDate: 2026-05-13
-heroImage: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd"
+heroImage: "/cha-de-hortela-com-gengibre.webp"
 category: "Saúde Natural"
 tags:
   - curanatureza
