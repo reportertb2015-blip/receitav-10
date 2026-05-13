@@ -2,7 +2,7 @@
 title: "Chá de Alecrim com Limão: Foco e Digestão"
 description: "Descubra os benefícios do chá de alecrim com limão da série Cura Natureza, ideal para melhorar a concentração e a saúde digestiva."
 pubDate: 2026-05-13
-heroImage: "/Chá de Alecrim com Limão.webp"
+heroImage: "/images/cha-alecrim-limao.webp"
 category: "Saúde Natural"
 tags:
   - curanatureza
