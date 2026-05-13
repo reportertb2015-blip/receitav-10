@@ -2,7 +2,7 @@
 title: "Chá de Camomila com Mel e Canela: Sono Profundo"
 description: "Aprenda a preparar o chá de camomila com mel e canela da série Cura Natureza para relaxar e melhorar a qualidade do sono."
 pubDate: 2026-05-13
-heroImage: "https://images.unsplash.com/photo-1544787210-2827d336aa63?auto=format&fit=crop&w=1000&q=80"
+heroImage: "/cha-de-camomila-com-mel-e-canela.webp"
 category: "Saúde Natural"
 tags:
   - curanatureza
