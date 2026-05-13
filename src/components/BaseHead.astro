@@ -54,3 +54,15 @@ const { title, description, image = '/images/default-share-receita.webp' } = Ast
   src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4017468224736206"
   crossorigin="anonymous">
 </script>
+
+<!-- Google AdX (Ad Manager) -->
+<script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+<script>
+  window.googletag = window.googletag || {cmd: []};
+  googletag.cmd.push(function() {
+    // Note: Os slots de anúncio específicos (Ad Units) 
+    // devem ser definidos aqui caso não use anúncios automáticos.
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
