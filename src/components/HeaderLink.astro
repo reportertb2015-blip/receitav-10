@@ -16,9 +16,17 @@ const isActive = href === pathname || href === '/' + (subpath?.[0] || '');
 	a {
 		display: inline-block;
 		text-decoration: none;
+		color: #333;
+		padding: 0.5rem 0;
+		border-bottom: 3px solid transparent;
+		transition: all 0.3s ease;
 	}
 	a.active {
-		font-weight: bolder;
-		text-decoration: underline;
+		font-weight: 700;
+		color: #2e7d32; /* O verde da série Cura Natureza */
+		border-bottom-color: #2e7d32;
+	}
+	a:hover {
+		color: #2e7d32;
 	}
 </style>
