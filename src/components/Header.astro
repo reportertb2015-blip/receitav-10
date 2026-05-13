@@ -5,14 +5,15 @@ import { SITE_TITLE } from '../consts';
 
 <header>
 	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
+		<div class="logo">
+			<a href="/">
+				<img src="/logo-receitagratis.webp" alt="Logo Receita Grátis" width="180" height="50" />
+			</a>
+		</div>
 		<div class="internal-links">
 			<HeaderLink href="/">Início</HeaderLink>
 			<HeaderLink href="/blog">Receitas</HeaderLink>
 			<HeaderLink href="/sobre">Cura Natureza</HeaderLink>
-		</div>
-		<div class="social-links">
-			<!-- Links para redes sociais se desejar -->
 		</div>
 	</nav>
 </header>
@@ -24,14 +25,10 @@ import { SITE_TITLE } from '../consts';
 		background: white;
 		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 	}
-	h2 {
-		margin: 0;
-		font-size: 1.5em;
-	}
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-		color: #2e7d32; /* Verde para remeter à natureza */
+	.logo img {
+		display: block;
+		height: 50px; /* Ajuste a altura conforme o seu logo */
+		width: auto;
 	}
 	nav {
 		display: flex;
@@ -39,7 +36,7 @@ import { SITE_TITLE } from '../consts';
 		justify-content: space-between;
 		max-width: 960px;
 		margin: 0 auto;
-		padding: 1em 0;
+		padding: 0.8em 0;
 	}
 	.internal-links {
 		display: flex;
@@ -57,5 +54,11 @@ import { SITE_TITLE } from '../consts';
 		text-decoration: none;
 		border-bottom-color: #2e7d32;
 		color: #2e7d32;
+	}
+	@media (max-width: 720px) {
+		nav {
+			flex-direction: column;
+			gap: 1em;
+		}
 	}
 </style>
