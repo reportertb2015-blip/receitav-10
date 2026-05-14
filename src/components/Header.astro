@@ -13,7 +13,9 @@ import { SITE_TITLE } from '../consts';
 		<div class="internal-links">
 			<HeaderLink href="/">Início</HeaderLink>
 			<HeaderLink href="/blog">Receitas</HeaderLink>
-			<HeaderLink href="/sobre">Cura Natureza</HeaderLink>
+			<HeaderLink href="/saude-natural">Saúde Natural</HeaderLink>
+			<HeaderLink href="/privacidade">Privacidade</HeaderLink>
+			<HeaderLink href="/termos">Termos</HeaderLink>
 		</div>
 	</nav>
 </header>
@@ -27,7 +29,7 @@ import { SITE_TITLE } from '../consts';
 	}
 	.logo img {
 		display: block;
-		height: 50px; /* Ajuste a altura conforme o seu logo */
+		height: 50px;
 		width: auto;
 	}
 	nav {
@@ -40,7 +42,7 @@ import { SITE_TITLE } from '../consts';
 	}
 	.internal-links {
 		display: flex;
-		gap: 1.5em;
+		gap: 1em; /* Reduzi um pouco o gap para caber os novos links */
 	}
 	nav a {
 		padding: 0.5em 0.2em;
@@ -48,6 +50,7 @@ import { SITE_TITLE } from '../consts';
 		border-bottom: 4px solid transparent;
 		text-decoration: none;
 		font-weight: 500;
+		font-size: 0.9em; /* Ajuste leve para melhor legibilidade no menu cheio */
 	}
 	nav a:hover,
 	nav a.active {
@@ -59,6 +62,10 @@ import { SITE_TITLE } from '../consts';
 		nav {
 			flex-direction: column;
 			gap: 1em;
+		}
+		.internal-links {
+			flex-wrap: wrap;
+			justify-content: center;
 		}
 	}
 </style>
