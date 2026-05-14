@@ -1,13 +1,14 @@
-import { defineCollection, z } from 'astro:content';
+import { defineConfig } from 'astro/config';
+import cloudflare from '@astrojs/cloudflare';
 
-const posts = defineCollection({
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    pubDate: z.date(),
-  }),
+// https://astro.build/config
+export default defineConfig({
+  output: 'server',
+  adapter: cloudflare(),
+
+  image: {
+    service: 'compile', // evita erro do sharp no Cloudflare
+  },
+
+  integrations: [],
 });
-
-export default {
-  posts,
-};
