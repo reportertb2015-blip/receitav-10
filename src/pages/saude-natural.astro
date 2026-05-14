@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/BlogPost.astro';
+
+// 1. Puxa todos os posts da coleção 'blog'
+const allPosts = await getCollection('blog');
+
+// 2. Filtra para mostrar apenas os que têm a categoria "Saúde Natural"
+const posts = allPosts.filter(
+	(post) => post.data.category === 'Saúde Natural'
+);
+
+// Dados para o cabeçalho da página
+const title = "Saúde Natural - Cura Natureza";
+const description = "Dicas e receitas naturais selecionadas por Anderson Kochanski.";
+---
+
+<html lang="pt-br">
+	<head>
+		<title>{title}</title>
+		<meta name="description" content={description} />
+	</head>
+	<body>
+		<main>
+			<h1>{title}</h1>
+			<p>{description}</p>
+			
+			<hr />
+
+			{posts.length > 0 ? (
+				<ul>
+					{posts.map((post) => (
+						<li>
+							<a href={`/blog/${post.slug}/`}>
+								{post.data.title}
+							</a>
+							<span> - {post.data.pubDate.toLocaleDateString('pt-BR')}</span>
+						</li>
+					))}
+				</ul>
+			) : (
+				<p>Nenhuma receita encontrada nesta categoria ainda. Verifique se o "category" nos arquivos Markdown está escrito exatamente como "Saúde Natural".</p>
+			)}
+		</main>
+	</body>
+</html>
