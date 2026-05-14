@@ -1,22 +1,60 @@
-import { glob } from "astro/loaders";
-import { defineCollection } from "astro:content";
-import { z } from "astro/zod";
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 
-const blog = defineCollection({
-	// Load Markdown and MDX files in the `src/content/blog/` directory.
-	loader: glob({ base: "./src/content/blog", pattern: "**/*.{md,mdx}" }),
-	// Type-check frontmatter using a schema
-	schema: z.object({
-		title: z.string(),
-		description: z.string(),
-		// Transform string to Date object
-		pubDate: z.coerce.date(),
-		updatedDate: z.coerce.date().optional(),
-		heroImage: z.string().optional(),
-		// ADICIONE ESTAS DUAS LINHAS ABAIXO:
-		category: z.string().optional(),
-		tags: z.array(z.string()).optional(),
-	}),
+// 1. Puxa todos os posts da coleção 'blog'
+const allPosts = await getCollection('blog');
+
+// 2. Filtra ignorando maiúsculas/minúsculas para garantir que apareça
+const posts = allPosts.filter((post) => {
+	const categoria = post.data.category ? post.data.category.toLowerCase() : '';
+	return categoria === 'saúde natural' || categoria === 'saude natural';
 });
 
-export const collections = { blog };
+const title = "Saúde Natural - Cura Natureza";
+const description = "Dicas e receitas naturais selecionadas por Anderson Kochanski.";
+---
+
+<!doctype html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8" /> <!-- Isso corrige os símbolos estranhos (SaÃºde) -->
+		<BaseHead title={title} description={description} />
+		<style>
+			main { width: 960px; max-width: calc(100% - 2em); margin: auto; padding: 3em 1em; }
+			ul { list-style-type: none; padding: 0; }
+			ul li { margin-bottom: 1rem; }
+			ul li a { text-decoration: none; color: #2e7d32; font-weight: bold; font-size: 1.2rem; }
+			ul li a:hover { text-decoration: underline; }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>{title}</h1>
+			<p>{description}</p>
+			<hr />
+
+			{posts.length > 0 ? (
+				<ul>
+					{posts.map((post) => (
+						<li>
+							{/* CORREÇÃO AQUI: Mudamos de post.slug para post.id */}
+							<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+							<br />
+							<small>{post.data.pubDate.toLocaleDateString('pt-BR')}</small>
+						</li>
+					))}
+				</ul>
+			) : (
+				<div style="background: #fff3e0; padding: 20px; border-left: 5px solid #ff9800;">
+					<p><strong>Nenhuma receita encontrada.</strong></p>
+					<p>Verifique se os arquivos na pasta <code>src/content/blog/</code> possuem a linha: <code>category: "Saúde Natural"</code> no topo.</p>
+				</div>
+			)}
+		</main>
+		<Footer />
+	</body>
+</html>
