@@ -20,7 +20,7 @@ const description = "Dicas e receitas naturais selecionadas por Anderson Kochans
 <!doctype html>
 <html lang="pt-br">
 	<head>
-		<meta charset="utf-8" /> 
+		<meta charset="utf-8" />
 		<BaseHead title={title} description={description} />
 		<style>
 			main { width: 960px; max-width: calc(100% - 2em); margin: auto; padding: 3em 1em; }
@@ -42,7 +42,7 @@ const description = "Dicas e receitas naturais selecionadas por Anderson Kochans
 				<ul>
 					{posts.map((post) => (
 						<li>
-							{/* CORREÇÃO DEFINITIVA: Mudamos de post.slug para post.id para evitar o erro 'undefined' */}
+							{/* Uso do post.id para garantir que o link funcione com o novo loader do Astro */}
 							<a href={`/blog/${post.id}/`}>{post.data.title}</a>
 							<small>{post.data.pubDate.toLocaleDateString('pt-BR')}</small>
 						</li>
@@ -51,7 +51,7 @@ const description = "Dicas e receitas naturais selecionadas por Anderson Kochans
 			) : (
 				<div style="background: #fff3e0; padding: 20px; border-left: 5px solid #ff9800; border-radius: 4px;">
 					<p><strong>Nenhuma receita encontrada.</strong></p>
-					<p>Certifique-se de que seus arquivos Markdown em <code>src/content/blog/</code> incluam exatamente: <code>category: "Saúde Natural"</code>.</p>
+					<p>Certifique-se de que seus arquivos Markdown em <code>src/content/blog/</code> incluam exatamente: <code>category: "Saúde Natural"</code> no frontmatter.</p>
 				</div>
 			)}
 		</main>
