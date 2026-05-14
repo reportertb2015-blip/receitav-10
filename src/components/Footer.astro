@@ -3,12 +3,24 @@ const today = new Date();
 ---
 
 <footer>
-	&copy; {today.getFullYear()} <strong>Receita Grátis</strong>. Todos os direitos reservados.
-	<div class="credits">
-		Uma iniciativa de <strong>Anderson Kochanski</strong> | Série <em>Cura Natureza</em>
-	</div>
-	<div class="social-links">
-		<!-- Você pode adicionar links para suas redes sociais aqui -->
+	<div class="footer-content">
+		&copy; {today.getFullYear()} <strong>Receita Grátis</strong>. Todos os direitos reservados.
+		<div class="credits">
+			Uma iniciativa de <strong>Anderson Kochanski</strong> | Série <em>Cura Natureza</em>
+		</div>
+		<div class="company-info">
+			A Kochanski Ltda | CNPJ: 40.413.232/0001-96
+		</div>
+		
+		<nav class="policy-links">
+			<a href="/privacidade">Política de Privacidade</a>
+			<a href="/termos">Termos de Uso</a>
+			<a href="/sobre">Sobre</a>
+		</nav>
+
+		<div class="social-links">
+			<!-- Links para redes sociais podem ser adicionados aqui -->
+		</div>
 	</div>
 </footer>
 
@@ -25,17 +37,31 @@ const today = new Date();
 		margin-top: 1rem;
 		font-size: 0.9rem;
 	}
+	.company-info {
+		font-size: 0.8rem;
+		margin-top: 0.5rem;
+		opacity: 0.8;
+	}
+	.policy-links {
+		display: flex;
+		justify-content: center;
+		gap: 1.5rem;
+		margin-top: 1.5rem;
+		flex-wrap: wrap;
+	}
+	.policy-links a {
+		text-decoration: none;
+		color: #2e7d32;
+		font-size: 0.85rem;
+		font-weight: 500;
+	}
+	.policy-links a:hover {
+		text-decoration: underline;
+	}
 	.social-links {
 		display: flex;
 		justify-content: center;
 		gap: 1em;
 		margin-top: 1em;
-	}
-	.social-links a {
-		text-decoration: none;
-		color: rgb(var(--gray));
-	}
-	.social-links a:hover {
-		color: #2e7d32;
 	}
 </style>
