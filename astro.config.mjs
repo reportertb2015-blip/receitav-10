@@ -1,18 +1,13 @@
-// @ts-check
-import { defineConfig } from "astro/config";
-import mdx from "@astrojs/mdx";
-import sitemap from "@astrojs/sitemap";
-import cloudflare from "@astrojs/cloudflare";
+import { defineCollection, z } from 'astro:content';
 
-// https://astro.build/config
-export default defineConfig({
-	site: "https://receitagratis.com", // Atualizado para o seu domínio
-	output: "server", // ADICIONE ISSO: Ativa o SSR para que o Cloudflare Workers funcione corretamente
-	integrations: [mdx(), sitemap()],
-	adapter: cloudflare({
-		mode: "directory", // Recomendado para Cloudflare Pages
-		platformProxy: {
-			enabled: true,
-		},
-	}),
+const posts = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.date(),
+  }),
 });
+
+export default {
+  posts,
+};
