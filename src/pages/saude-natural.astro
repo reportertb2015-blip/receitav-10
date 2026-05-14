@@ -1,46 +1,59 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../layouts/BlogPost.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 
 // 1. Puxa todos os posts da coleção 'blog'
 const allPosts = await getCollection('blog');
 
-// 2. Filtra para mostrar apenas os que têm a categoria "Saúde Natural"
-const posts = allPosts.filter(
-	(post) => post.data.category === 'Saúde Natural'
-);
+// 2. Filtra ignorando maiúsculas/minúsculas para garantir que apareça
+const posts = allPosts.filter((post) => {
+	const categoria = post.data.category ? post.data.category.toLowerCase() : '';
+	return categoria === 'saúde natural' || categoria === 'saude natural';
+});
 
-// Dados para o cabeçalho da página
 const title = "Saúde Natural - Cura Natureza";
 const description = "Dicas e receitas naturais selecionadas por Anderson Kochanski.";
 ---
 
+<!doctype html>
 <html lang="pt-br">
 	<head>
-		<title>{title}</title>
-		<meta name="description" content={description} />
+		<meta charset="utf-8" /> <!-- Isso corrige os símbolos estranhos (SaÃºde) -->
+		<BaseHead title={title} description={description} />
+		<style>
+			main { width: 960px; max-width: calc(100% - 2em); margin: auto; padding: 3em 1em; }
+			ul { list-style-type: none; padding: 0; }
+			ul li { margin-bottom: 1rem; }
+			ul li a { text-decoration: none; color: #2e7d32; font-weight: bold; font-size: 1.2rem; }
+			ul li a:hover { text-decoration: underline; }
+		</style>
 	</head>
 	<body>
+		<Header />
 		<main>
 			<h1>{title}</h1>
 			<p>{description}</p>
-			
 			<hr />
 
 			{posts.length > 0 ? (
 				<ul>
 					{posts.map((post) => (
 						<li>
-							<a href={`/blog/${post.slug}/`}>
-								{post.data.title}
-							</a>
-							<span> - {post.data.pubDate.toLocaleDateString('pt-BR')}</span>
+							<a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+							<br />
+							<small>{post.data.pubDate.toLocaleDateString('pt-BR')}</small>
 						</li>
 					))}
 				</ul>
 			) : (
-				<p>Nenhuma receita encontrada nesta categoria ainda. Verifique se o "category" nos arquivos Markdown está escrito exatamente como "Saúde Natural".</p>
+				<div style="background: #fff3e0; padding: 20px; border-left: 5px solid #ff9800;">
+					<p><strong>Nenhuma receita encontrada.</strong></p>
+					<p>Verifique se os arquivos na pasta <code>src/content/blog/</code> possuem a linha: <code>category: "Saúde Natural"</code> no topo.</p>
+				</div>
 			)}
 		</main>
+		<Footer />
 	</body>
 </html>
