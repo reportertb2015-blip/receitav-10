@@ -13,9 +13,18 @@ const { title, description, pubDate, updatedDate, heroImage, category } = Astro.
 // 1. Busca todas as receitas da coleção 'blog'
 const allPosts = await getCollection('blog');
 
-// 2. Filtra posts da mesma categoria, removendo o atual, e limita a 3 sugestões
+// 2. Filtro robusto para receitas relacionadas
 const relatedPosts = allPosts
-	.filter((post) => post.data.category === category && post.data.title !== title)
+	.filter((post) => {
+		// Garante que não sugira o post que já está sendo lido
+		const isDifferent = post.data.title !== title;
+		
+		// Normaliza as categorias (remove espaços e ignora maiúsculas/minúsculas)
+		const currentCat = category ? category.trim().toLowerCase() : '';
+		const postCat = post.data.category ? post.data.category.trim().toLowerCase() : '';
+		
+		return isDifferent && postCat === currentCat && postCat !== '';
+	})
 	.slice(0, 3);
 ---
 
@@ -57,7 +66,7 @@ const relatedPosts = allPosts
 			}
 			.title h1 {
 				margin: 0 0 0.5em 0;
-				color: #2e7d32; /* Verde Cura Natureza */
+				color: #2e7d32; /* Verde temático Cura Natureza */
 				font-size: 2.5rem;
 			}
 			.date {
@@ -71,7 +80,7 @@ const relatedPosts = allPosts
 			}
 			hr { border: 0; border-top: 1px solid #eee; margin: 2rem 0; }
 
-			/* Estilos para Receitas Relacionadas */
+			/* Estilos para a seção automática de Receitas Relacionadas */
 			.related-wrapper {
 				margin-top: 3em;
 				padding-top: 2em;
@@ -132,7 +141,7 @@ const relatedPosts = allPosts
 					
 					<slot />
 
-					{/* Seção de Posts Relacionados no final do artigo */}
+					{/* Seção automática de sugestões no portal Receita Grátis */}
 					{relatedPosts.length > 0 && (
 						<div class="related-wrapper">
 							<h2>Você também pode gostar:</h2>
